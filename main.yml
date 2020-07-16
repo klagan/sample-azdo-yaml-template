@@ -35,7 +35,7 @@ parameters:
     type: boolean
     default: false
 
-variables:
+# variables:
   # - group: 'sample variable group'
   # - name: sample_variable
   #   value: 'sample variable value'

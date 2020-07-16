@@ -1,0 +1,47 @@
+parameters:
+  - name: agentName
+    displayName: 'Build Agent Name'
+    type: string
+    default: 'Azure Pipelines'
+    values:
+      - 'Azure Pipelines'
+      - 'Linux Agents'
+      - 'MS Windows Agents'
+
+  - name: artefactSource
+    displayName: 'Source'
+    default: 'Latest from Master'
+    values:
+      - 'Latest'
+      - 'Latest from Master'
+      - 'Specific'
+  
+  - name: artefactBuildId
+    displayName: 'Build Id'
+    default: 000
+
+  - name: alpha
+    displayName: 'Alpha'
+    type: boolean
+    default: false
+
+  - name: beta
+    displayName: 'Beta'
+    type: boolean
+    default: false
+
+  - name: gamma
+    displayName: 'Gamma'
+    type: boolean
+    default: false
+
+variables:
+  #- group: 'my variable group'
+  - name: artefactPipelineId
+    value: 'klagan.sample-multitenancy'
+  - name: subscriptionName
+    value: 'Release Manager'
+
+stages:
+  - ${{ if eq(parameters.beta, true) }}:
+    - template: test-stage.yml

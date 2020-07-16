@@ -1,0 +1,24 @@
+parameters:
+  - name: alpha
+    default: false
+
+  - stage:
+    displayName: 'test stage'
+
+    jobs:
+    - job:
+      displayName: 'test job 1'
+    - ${{ if eq(parameters.alpha, true) }}:
+      - bash: |
+            which bash
+            echo Hello $name
+        displayName: 'Multi-line Bash script 1 - true'
+
+    - job:
+      displayName: 'test job 2'
+      steps:
+      - ${{ if ne(parameters.alpha, true) }}:
+        - bash: |
+            which bash
+            echo Hello $name
+          displayName: 'Multi-line Bash script 2 - false'

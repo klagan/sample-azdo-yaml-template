@@ -2,6 +2,7 @@ parameters:
   - name: alpha
     default: false
 
+stages:
   - stage:
     displayName: 'test stage'
 

@@ -43,8 +43,8 @@ variables:
     value: 'Release Manager'
 
 stages:
-  # - ${{ if eq(parameters.beta, true) }}:
-  #   - template: test-stage.yml
+  - ${{ if eq(parameters.beta, true) }}:
+    - template: test-stage.yml
 
-  # - ${{ if eq(parameters.beta, false) }}:
+  - ${{ if eq(parameters.beta, false) }}:
     - template: no-stage.yml

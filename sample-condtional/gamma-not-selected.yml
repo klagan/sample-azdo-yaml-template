@@ -4,7 +4,7 @@
 
     jobs:
     - job:
-      displayName: 'print nice message'
+      displayName: 'print NOT message'
       steps:
       - bash: |
             which bash

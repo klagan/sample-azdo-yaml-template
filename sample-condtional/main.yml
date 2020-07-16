@@ -40,7 +40,6 @@ parameters:
   # - name: sample_variable
   #   value: 'sample variable value'
 
-
 stages:
   - ${{ if eq(parameters.alpha, true) }}:
     - template: alpha-selected.yml

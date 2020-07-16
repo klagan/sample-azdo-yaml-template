@@ -36,9 +36,9 @@ parameters:
     default: false
 
 variables:
-  - group: 'sample variable group'
-  - name: sample_variable
-    value: 'sample variable value'
+  # - group: 'sample variable group'
+  # - name: sample_variable
+  #   value: 'sample variable value'
 
 
 stages:

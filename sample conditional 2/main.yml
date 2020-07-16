@@ -1,0 +1,67 @@
+parameters:
+  - name: agentName
+    displayName: 'Agent Pool'
+    type: string
+    default: 'Azure Pipelines'
+    values:
+      - 'Azure Pipelines'
+      - 'Linux Agents'
+      - 'MS Windows Agents'
+
+  - name: artefactSource
+    displayName: 'Source'
+    default: 'Latest from Master'
+    values:
+      - 'Latest'
+      - 'Latest from Master'
+      - 'Specific'
+  
+  - name: artefactBuildId
+    displayName: 'Build Id'
+    default: 000
+
+  - name: alpha
+    displayName: 'Alpha'
+    type: boolean
+    default: false
+
+  - name: beta
+    displayName: 'Beta'
+    type: boolean
+    default: false
+
+  - name: gamma
+    displayName: 'Gamma'
+    type: boolean
+    default: false
+
+variables:
+  - name: projectName
+    value: 'Examples'
+  - name: buildName
+    value: 'klagan.sample-multitenancy'
+  - name: buildId
+    value: 000
+  # - group: 'sample variable group'
+  # - name: sample_variable
+  #   value: 'sample variable value'
+jobs:
+- job:
+  steps:
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download artefact'
+    inputs:
+      buildType: 'specific'
+      project: ${{ variables.projectName }}
+      pipeline: ${{ variables.buildName }}
+      ${{ if eq(parameters['artefactSource'], 'Latest from Master') }}:
+        buildVersionToDownload: 'latestByBranch'
+      ${{ if eq(parameters['artefactSource'], 'Latest') }}:
+        buildVersionToDownload: 'latest'
+      ${{ if eq(parameters['artefactSource'], 'Specific') }}:
+        buildVersionToDownload: 'specific'
+      downloadType: 'specific'
+      # artifactName: 'web' 
+      downloadPath: '$(System.DefaultWorkingDirectory)/_klagan.sample-multitenancy/'
+      branchName: 'refs/heads/master'
+      buildId: ${{ variables.buildId }} 

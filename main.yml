@@ -1,6 +1,6 @@
 parameters:
   - name: agentName
-    displayName: 'Build Agent Name'
+    displayName: 'Agent Pool'
     type: string
     default: 'Azure Pipelines'
     values:
@@ -36,15 +36,26 @@ parameters:
     default: false
 
 variables:
-  #- group: 'my variable group'
-  - name: artefactPipelineId
-    value: 'klagan.sample-multitenancy'
-  - name: subscriptionName
-    value: 'Release Manager'
+  - group: 'sample variable group'
+  - name: sample_variable
+    value: 'sample variable value'
+
 
 stages:
+  - ${{ if eq(parameters.alpha, true) }}:
+    - template: alpha-selected.yml
+
+  - ${{ if eq(parameters.alpha, false) }}:
+    - template: alpha-not-selected.yml
+
   - ${{ if eq(parameters.beta, true) }}:
-    - template: test-stage.yml
+    - template: beta-selected.yml
 
   - ${{ if eq(parameters.beta, false) }}:
-    - template: no-stage.yml
+    - template: beta-not-selected.yml
+
+  - ${{ if eq(parameters.gamma, true) }}:
+    - template: gamma-selected.yml
+
+  - ${{ if eq(parameters.gamma, false) }}:
+    - template: gamma-not-selected.yml

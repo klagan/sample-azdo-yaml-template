@@ -1,0 +1,12 @@
+ stages:
+  - stage:
+    displayName: 'beta selected message'
+
+    jobs:
+    - job:
+      displayName: 'print nice message'
+      steps:
+      - bash: |
+            which bash
+            echo Hello $name
+        displayName: 'bash beta'

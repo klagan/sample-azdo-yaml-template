@@ -1,6 +1,6 @@
  stages:
   - stage:
-    displayName: 'test stage for nice message'
+    displayName: 'gamma NOT selected message'
 
     jobs:
     - job:
@@ -9,4 +9,4 @@
       - bash: |
             which bash
             echo Hello $name
-        displayName: 'beta is false '
+        displayName: 'bash NOT gamma'

@@ -1,0 +1,10 @@
+- stage:
+  displayName: 'test stage for nice message'
+
+  jobs:
+  - job:
+    displayName: 'print nice message'
+  - bash: |
+        which bash
+        echo Hello $name
+    displayName: 'beta is false '

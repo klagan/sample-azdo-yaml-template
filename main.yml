@@ -45,3 +45,6 @@ variables:
 stages:
   - ${{ if eq(parameters.beta, true) }}:
     - template: test-stage.yml
+
+  - ${{ if eq(parameters.beta, false) }}:
+    - template: no-stage.yml

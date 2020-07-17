@@ -1,3 +1,14 @@
+name: 1.0$(rev:.r)
+
+trigger:
+  branches:
+    exclude:
+     - master
+     - feature/*
+     - develop/*
+     - task/*
+     - hotfix/*
+
 parameters:
   - name: agentName
     displayName: 'Agent Pool'
@@ -43,9 +54,13 @@ parameters:
 stages:
   - ${{ if eq(parameters.alpha, true) }}:
     - template: alpha-selected.yml
+      parameters:
+        agentName: ${{ parameters.agentName }}
 
   - ${{ if eq(parameters.alpha, false) }}:
     - template: alpha-not-selected.yml
+      parameters:
+          agentName: ${{ parameters.agentName }}
 
   - ${{ if eq(parameters.beta, true) }}:
     - template: beta-selected.yml

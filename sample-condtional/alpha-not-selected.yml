@@ -1,12 +1,17 @@
- stages:
-  - stage:
-    displayName: 'alpha NOT selected message'
+parameters:
+  name: agentName
 
-    jobs:
-    - job:
-      displayName: 'print NOT message'
-      steps:
-      - bash: |
-            which bash
-            echo Hello $name
-        displayName: 'bash NOT alpha'
+stages:
+- stage:
+  displayName: 'alpha NOT selected message'
+  pool:
+    name: ${{ parameters.agentName }}
+    vmImage: 'ubuntu-latest'
+  jobs:
+  - job:
+    displayName: 'print NOT message'
+    steps:
+    - bash: |
+          which bash
+          echo Hello $name
+      displayName: 'bash NOT alpha'

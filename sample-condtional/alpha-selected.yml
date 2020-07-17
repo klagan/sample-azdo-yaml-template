@@ -1,12 +1,18 @@
- stages:
-  - stage:
-    displayName: 'alpha selected message'
-
-    jobs:
-    - job:
-      displayName: 'print nice message'
-      steps:
-      - bash: |
-            which bash
-            echo Hello $name
-        displayName: 'bash alpha'
+parameters:
+  name: agentName
+ 
+stages:
+- stage:
+  displayName: 'alpha selected message'
+  pool:
+    name: ${{ parameters.agentName }}
+    vmImage: 'ubuntu-latest'
+    
+  jobs:
+  - job:
+    displayName: 'print nice message'
+    steps:
+    - bash: |
+          which bash
+          echo Hello $name
+      displayName: 'bash alpha'

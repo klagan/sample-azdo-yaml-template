@@ -73,4 +73,5 @@ jobs:
       # artifactName: 'web' 
       downloadPath: '$(System.DefaultWorkingDirectory)/_klagan.sample-multitenancy/'
       branchName: 'refs/heads/master'
-      buildId: ${{ parameters.artefactBuildId }} 
+      ${{ if eq(parameters.artefactSource, 'Specific') }}:
+        buildId: ${{ parameters.artefactBuildId }} 
